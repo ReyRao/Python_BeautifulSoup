@@ -11,13 +11,14 @@ import matplotlib.pyplot as plt
 global SPATH
 SPATH = r"./TSMC_test.csv"
 
-
 # draw price trending
 def draw_price():
     df = pd.read_csv(SPATH)
-    # fetch the "end price" of each of the day
+    # fetch the "end price" from each of the day
     END_PRICE = df['End']
-    plt.plot(df['date'], END_PRICE)
+    x = list(range(len(END_PRICE)))
+    plt.plot(x, END_PRICE)
+    # plt.xticks(x, df['date'], rotation='30')
     plt.show()
 
 def main():
@@ -32,15 +33,6 @@ def main():
         tsmc_web = 'http://www.twse.com.tw/exchangeReport/STOCK_DAY?response=html&date=2015'\
                     + month\
                     + '05&stockNo=2330'
-
-###############################################
-        # stock_code = str(input(
-        #     'Plz enter the stock code that you want to search:\n'))
-        # tsmc_web = 'http://www.twse.com.tw/exchangeReport/STOCK_DAY?response=html&date=2015'\
-        #         + month\
-        #         + '05&stockNo=2'\
-        #         + stock_code
-###############################################
 
         # get html
         res = urlopen(tsmc_web).read()
@@ -68,7 +60,7 @@ def main():
 
 if __name__ == "__main__":
     # try:
-    main()
+    # main()
     # except:
     #     print("Please close the saving data!")
-    # draw_price()
+    draw_price()
